@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blog :: Login</title>
+    <style>
+        body {
+            background-color: #f0f5ff; /* Light blue background */
+            color: #333; /* Dark text color */
+            font-family: 'Garamond', serif; /* Font */
+            margin: 0; /* Reset default margin */
+        }
+        .container {
+            max-width: 600px; /* Limit container width */
+            margin: 50px auto; /* Center container horizontally with 50px margin from top */
+            padding: 30px; /* Add 30px padding from every side */
+            background-color: #fff; /* White container background */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+            margin-top: 100px;
+        }
+        h1 {
+            color: #0056b3; /* Darker blue heading */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        hr {
+            border: 1px solid #0056b3; /* Darker blue horizontal line */
+            margin: 20px 0; /* Add margin top and bottom */
+        }
+        form {
+            margin-top: 20px; /* Add margin to separate form from heading */
+        }
+        label {
+            display: block; /* Display labels as block elements */
+            margin-bottom: 5px; /* Add margin below labels */
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%; /* Make text inputs full width */
+            padding: 8px; /* Add padding to inputs */
+            margin-bottom: 10px; /* Add margin below inputs */
+            border: 1px solid #ccc; /* Light gray border */
+            border-radius: 5px; /* Rounded corners */
+            box-sizing: border-box; /* Include padding and border in element's total width and height */
+        }
+        button {
+            width: 100%; /* Make button full width */
+            padding: 10px; /* Add padding to button */
+            border: none; /* Remove default button border */
+            border-radius: 5px; /* Rounded corners */
+            background-color: #0056b3; /* Darker blue button background */
+            color: #fff; /* White button text color */
+            font-size: 16px; /* Button text size */
+            cursor: pointer;
+        }
+        p {
+            text-align: center; /* Center-align paragraph */
+            margin-top: 20px; /* Add margin above paragraph */
+        }
+        a {
+            color: #0056b3; /* Darker blue link color */
+            text-decoration: none; /* Remove underline from links */
+        }
+        a:hover {
+            text-decoration: underline; /* Add underline on hover */
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Spring Boot Blog Application</h1>
+    <a th:href="@{/}">Home</a>
+    <hr/>
+    <form action="#" th:action="@{/login}" th:object="${account}" method="POST">
+        <div>
+            <label for="email">Email</label>
+            <input id="email" type="text" th:field="*{email}" placeholder="Email"/>
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input id="password" type="password" th:field="*{password}" placeholder="Password"/>
+        </div>
+        <button type="submit">LOGIN</button>
+    </form>
+    <p>Don't have an account?<a th:href="@{/register}">Register</a></p>
+</div>
+</body>
+</html>

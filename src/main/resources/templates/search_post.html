@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blog :: Search</title>
+    <style>
+        /* Reset default margin and padding */
+        body, h1, h2, h5, p, a {
+            margin: 0;
+            padding: 0;
+            font-family: 'Garamond', serif; /* Match the font family */
+        }
+
+        /* Set background color */
+        body {
+            background-color: #f0f5ff; /* Light blue background */
+        }
+
+        /* Basic styling for the container */
+        .container {
+            margin: 50px; /* Add 50px margin from every side */
+            padding: 50px; /* Add 50px padding from every side */
+            background-color: #fff; /* White container background */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+            position: relative;
+            min-height: 100vh; /* Ensure container covers the full viewport height */
+        }
+
+        /* Styling for the main heading */
+        h1 {
+            color: #0056b3; /* Darker blue heading */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Styling for horizontal line */
+        hr {
+            border: 1px solid #0056b3; /* Darker blue horizontal line */
+            margin: 20px 0; /* Add margin top and bottom */
+        }
+
+        /* Styling for posts container */
+        .posts-container {
+            margin-top: 20px;
+        }
+
+        /* Styling for individual posts */
+        .post {
+            padding: 20px;
+            border: 1px solid #0056b3; /* Darker blue border */
+            border-radius: 5px;
+            margin-bottom: 20px;
+            background-color: #e6f2ff; /* Light blue background */
+        }
+
+        /* Styling for links */
+        a {
+            text-decoration: none;
+            color: #0056b3; /* Darker blue link color */
+        }
+
+        /* Styling for post titles */
+        .post h2 a {
+            color: #0056b3; /* Darker blue link color */
+        }
+
+        /* Styling for post dates */
+        .post h5 {
+            color: #666; /* Darker gray for dates */
+        }
+
+        /* Styling for post body */
+        .post p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Add spacing between posts */
+        .post + .post {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Spring Boot Blog Application</h1>
+    <hr/>
+
+    <div class="posts-container">
+        <div class="post" th:each="post : ${searchResults}">
+            <h2><a th:href="@{'/posts/' + ${post.id}}"
+                   th:text="${post.title}">Title</a>
+            </h2>
+            <h5 th:text="'Created on ' + ${post.createdAt}">Created At</h5>
+            <h5 th:text="'Last Updated on ' + ${post.updatedAt}">Updated At</h5>
+            <p th:text="${post.body}">body text</p>
+            <br/>
+        </div>
+    </div>
+    <hr/>
+</div>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blog :: New Post</title>
+    <style>
+        /* Reset default margin and padding */
+        body, h1, h2, h5, p, a {
+            margin: 0;
+            padding: 0;
+            font-family: 'Garamond', serif; /* Match the font family */
+        }
+
+        /* Set background color */
+        body {
+            background-color: #f0f5ff; /* Light blue background */
+        }
+
+        /* Basic styling for the container */
+        .container {
+            margin: 50px; /* Add 50px margin from every side */
+            padding: 50px; /* Add 50px padding from every side */
+            background-color: #fff; /* White container background */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+            position: relative;
+            min-height: 100vh; /* Ensure container covers the full viewport height */
+        }
+
+        /* Styling for the main heading */
+        h2 {
+            color: #0056b3; /* Darker blue heading */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Styling for the button box */
+        .button-box {
+            text-align: left; /* Align the box to the left */
+            margin-bottom: 20px;
+        }
+
+        /* Styling for the box */
+        .box {
+            display: inline-block;
+            padding: 10px 20px;
+            border: 2px solid #0056b3; /* Dark blue border */
+            border-radius: 5px;
+            background-color: #f0f5ff; /* Same as main background color */
+        }
+
+        /* Styling for the link within the box */
+        .box a {
+            text-decoration: none;
+            color: #0056b3; /* Dark blue link color */
+        }
+
+        /* Styling for labels */
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Styling for input fields */
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        /* Styling for submit button */
+        button[type="submit"] {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #0056b3; /* Dark blue background */
+            color: #fff; /* White text color */
+            cursor: pointer;
+        }
+
+        /* Styling for published by paragraph */
+        p {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Write New Post</h2>
+    <div class="button-box">
+        <div class="box">
+            <a th:href="@{/}">Home</a>
+        </div>
+    </div>
+    <form action="#" th:action="@{'/posts/new'}" th:object="${post}" method="POST">
+        <input type="hidden" th:field="*{createdAt}"/>
+        <div>
+            <label for="new-post-title">Title</label>
+            <input id="new-post-title" type="text" th:field="*{title}" placeholder="Title"/>
+        </div>
+        <div>
+            <label for="new-post-body">Body</label>
+            <textarea id="new-post-body" th:field="*{body}"></textarea>
+        </div>
+        <p th:text="'Published by ' + ${session.account.firstName}"></p>
+        <button type="submit">PUBLISH POST</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blog :: Home</title>
+    <style>
+        body {
+            background-color: #f0f5ff; /* Light blue background */
+            color: #333; /* Dark text color */
+            font-family: Arial, sans-serif; /* Font */
+            margin: 0; /* Reset default margin */
+        }
+        .container {
+            margin: 50px; /* Add 50px margin from every side */
+            padding: 50px; /* Add 50px padding from every side */
+            background-color: #fff; /* White container background */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+            position: relative;
+            height: 550px;
+        }
+        h1 {
+            color: #0056b3; /* Darker blue heading */
+            text-align: center;
+            margin-bottom: 20px;
+             font-family: 'Garamond', serif;
+        }
+        hr {
+            border: 1px solid #0056b3; /* Darker blue horizontal line */
+            margin: 20px 0; /* Add margin top and bottom */
+            align: center;
+
+        }
+        ul {
+            list-style-type: none;
+            display: flex;
+            padding: 0;
+            margin: 0;
+            position: absolute;
+            top: 25px; /* Adjust top position */
+            right: 80px; /* Align to right */
+        }
+        li {
+            display: inline;
+            margin-right: 10px;
+        }
+        a {
+            text-decoration: none;
+            color: #0056b3; /* Darker blue link color */
+        }
+        button {
+            padding: 8px;
+            border: 1px solid #0056b3; /* Darker blue border */
+            border-radius: 5px;
+            background-color: #e6f2ff; /* Light blue button background */
+            color: #0056b3; /* Darker blue button text color */
+            cursor: pointer;
+        }
+        .posts-container {
+            margin-top: 20px;
+
+        }
+        .post {
+            padding: 20px;
+            border: 1px solid #0056b3; /* Darker blue border */
+            border-radius: 5px;
+            margin-bottom: 20px;
+            background-color: #e6f2ff;
+
+        }
+        form {
+            display: flex;
+            margin-bottom: 20px;
+             }
+        form input[type="text"],
+        form button {
+            margin-right: 10px;
+        }
+        .search {
+        padding-left: 400px;
+        }
+        .formy{
+        padding-left: 100px;
+
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Spring Boot Blog Application</h1>
+    <ul>
+        <li><a th:href="@{/posts/new}"><button type="submit">New Post</button></a></li>
+        <li><a th:href="@{/myfeed}"><button type="submit">My Feed</button></a></li>
+        <li><a th:href="@{/login}"><button type="submit">Login</button></a></li>
+        <li><a th:href="@{/register}"><button type="submit">Register</button></a></li>
+        <li>
+            <form action="#" th:if="${session.isLoggedIn}" th:action="@{/logout}" method="POST">
+                <div>
+                    <p th:text="'Hi, ' + ${session.account.email}"></p>
+                </div>
+                <button type="submit">Logout</button>
+            </form>
+        </li>
+    </ul>
+    <hr/>
+    <div class="search" style="display: flex;">
+        <form action="#" th:action="@{'/search'}" method="POST">
+            <input id="search-title" type="text" name="query" placeholder="Search by Title"/>
+            <button type="submit">SEARCH</button>
+        </form>
+        <form action="#" th:action="@{'/account'}" method="POST" class="formy">
+            <input id="search-account" type="text" name="account" placeholder="Search for User"/>
+            <button type="submit">SEARCH</button>
+        </form>
+    </div>
+    <hr/>
+    <div class="posts-container">
+        <div class="post" th:each="post : ${posts}">
+            <h2><a th:href="@{'/posts/' + ${post.id}}" th:text="${post.title}">Title</a></h2>
+            <h5 th:text="'Author: ' + ${post.account.firstName}"></h5>
+            <h5 th:text="'Created on ' + ${post.createdAt}">Created At</h5>
+            <h5 th:text="'Last Updated on ' + ${post.updatedAt}">Updated At</h5>
+            <p th:text="${post.body}">body text</p>
+            <br/>
+        </div>
+    </div>
+</div>
+</body>
+</html>

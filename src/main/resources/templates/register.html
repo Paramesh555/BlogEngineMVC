@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blog :: Register</title>
+    <style>
+        /* Reset default margin and padding */
+        body, h1, form, input, button, p, label, a {
+            margin: 0;
+            padding: 0;
+            font-family: 'Garamond', serif; /* Match the font family */
+        }
+
+        /* Set background color */
+        body {
+            background-color: #f0f5ff; /* Light blue background */
+        }
+
+        /* Basic styling for the container */
+        .container {
+            margin: 50px auto; /* Add 50px margin from top and bottom, center horizontally */
+            padding: 20px;
+            background-color: #fff; /* White container background */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+            width: 700px; /* Set width of the container */
+            margin-top: 150px;
+            height: 400px;
+        }
+
+        /* Styling for the main heading */
+        h1 {
+            color: #0056b3; /* Darker blue heading */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Styling for the form */
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Styling for form inputs */
+        input[type="text"],
+        input[type="password"] {
+            width: 95%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc; /* Light gray border */
+            border-radius: 5px;
+        }
+
+        /* Styling for form labels */
+        label {
+            margin-bottom: 5px;
+        }
+
+        /* Styling for form button */
+        button {
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            background-color: #0056b3; /* Darker blue button background */
+            color: #fff; /* White button text color */
+            cursor: pointer;
+            width: 98%;
+        }
+
+        /* Styling for the 'Already have an account?' message */
+        p {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Styling for the login link */
+        a {
+            color: #0056b3; /* Darker blue link color */
+            text-decoration: none;
+        }
+
+        /* Additional styling for .rishi */
+        .rishi {
+            padding-left: 18px;
+        }
+
+        /* Styling for horizontal line */
+        hr {
+            border: 1px solid #0056b3;
+            margin: 20px;
+            width: 90%;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="rishi">
+        <h1>Spring Boot Blog Application</h1>
+        <hr/>
+        <form action="#" th:action="@{/register}" th:object="${account}" method="POST">
+            <div>
+                <label for="firstname">First Name</label>
+                <input id="firstname" type="text" th:field="*{firstName}" placeholder="First Name"/>
+            </div>
+            <div>
+                <label for="lastname">Last Name</label>
+                <input id="lastname" type="text" th:field="*{lastName}" placeholder="Last Name"/>
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input id="email" type="text" th:field="*{email}" placeholder="Email"/>
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input id="password" type="password" th:field="*{password}" placeholder="Password"/>
+            </div>
+            <button type="submit" class="nip">REGISTER</button>
+        </form>
+        <p>Already have an account?<a th:href="@{/login}">Login</a></p>
+    </div>
+</div>
+</body>
+</html>
